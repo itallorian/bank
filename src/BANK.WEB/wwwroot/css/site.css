@@ -11,10 +11,12 @@ html {
 html {
     position: relative;
     min-height: 100%;
+    max-height: 100%;
 }
 
 body {
     margin-bottom: 60px;
+    overflow-x: hidden;
 }
 
 .navbar-brand {
@@ -38,10 +40,10 @@ body {
         padding: 10px;
     }
 
-    .hero .card input {
-        width: 100%;
-        margin: 10px 0;
-    }
+        .hero .card input {
+            width: 100%;
+            margin: 10px 0;
+        }
 
         .hero .card button {
             width: 100%;
@@ -49,6 +51,43 @@ body {
             color: #fff;
             background: rgba(0, 0, 0, 0.8);
         }
+
+
+.articles article {
+    width: 100%;
+    padding: 30px 0 20px 0;
+    text-align: center;
+}
+
+    .articles article .article_text,
+    .articles article .article_image {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        padding: 30px !important;
+    }
+
+        .articles article .article_text .article_text_title {
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        .articles article .article_text .article_text_phrase {
+            font-size: 2em;
+            opacity: 0.6;
+        }
+
+        .articles article .article_image img {
+            width: 60%;
+        }
+
+footer {
+    width: 100%;
+    padding: 50px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
 
 @media (max-width: 768px) {
     .navbar-brand img {
