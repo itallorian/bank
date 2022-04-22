@@ -1,4 +1,4 @@
-namespace BANK.WEB.Models
+namespace BANK.WEB.ViewModels
 {
     public class ErrorViewModel
     {
