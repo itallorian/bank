@@ -1,0 +1,40 @@
+﻿@model TransactionViewModel
+
+@{
+    ViewData["Title"] = "New Transaction";
+}
+
+@section Styles{
+<link rel="stylesheet" href="~/css/customer/balance-transactions.css" asp-append-version="true" />
+}
+
+<div class="row">
+    <div class="col-12 p-5 d-flex justify-content-around flex-column flex-md-row">
+        <div class="col-12 col-md-4 balace-card mb-3">
+            <div class="card col-12">
+                <div class="card-body">
+                    <h5 class="card-title">Balance</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">This is your current balance</h6>
+                    <h2 class="card-text">@Model.LimitValue</h2>
+                    <a asp-action="Balance" asp-controller="Customer">View transactions</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <form asp-action="Edit" asp-controller="Customer" method="post" enctype="application/x-www-form-urlencoded">
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label asp-for="DestinationAccount" class="form-label">Destination Account</label>
+                    <input required="" asp-for="DestinationAccount" type="text" class="form-control" autocomplete="off">
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TransferValue" class="form-label">Value</label>
+                    <input required="" asp-for="TransferValue" type="text" class="form-control" autocomplete="off">
+                </div>
+
+                <button type="submit" class="btn btn-secondary col-12">Continue</button>
+            </form>
+        </div>
+    </div>
+</div>

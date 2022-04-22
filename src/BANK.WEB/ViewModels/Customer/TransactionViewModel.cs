@@ -12,6 +12,10 @@
 
         public string? Value { get; set; }
 
-        public DateTime TransactionDate { get; set; }
+        public DateTime? TransactionDate { get; set; }
+
+        public decimal? TransferValue { get; set; }
+
+        public string? LimitValue { get; set; }
     }
 }

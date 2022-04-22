@@ -69,62 +69,19 @@ namespace BANK.WEB.Controllers
                         TransactionId = 1,
                         TransactionProtocol = "fdslak124dfsadjl2134",
                         Value = "$ 10.00"
-                    },
-                    new TransactionViewModel()
-                    {
-                        DestinationAccount = "000000001",
-                        RecipientName = "John Doe",
-                        TransactionDate = DateTime.Now,
-                        TransactionId = 2,
-                        TransactionProtocol = "fdslak124sdfsadjl2134",
-                        Value = "$ 10.00"
-                    },
-                                        new TransactionViewModel()
-                    {
-                        DestinationAccount = "000000001",
-                        RecipientName = "John Doe",
-                        TransactionDate = DateTime.Now,
-                        TransactionId = 3,
-                        TransactionProtocol = "fdslak124sdfsadjl2134",
-                        Value = "$ 10.00"
-                    },
-                                                            new TransactionViewModel()
-                    {
-                        DestinationAccount = "000000001",
-                        RecipientName = "John Doe",
-                        TransactionDate = DateTime.Now,
-                        TransactionId = 4,
-                        TransactionProtocol = "fdslak124sdfsadjl2134",
-                        Value = "$ 10.00"
-                    },
-                                                                                new TransactionViewModel()
-                    {
-                        DestinationAccount = "000000001",
-                        RecipientName = "John Doe",
-                        TransactionDate = DateTime.Now,
-                        TransactionId = 5,
-                        TransactionProtocol = "fdslak124sdfsadjl2134",
-                        Value = "$ 10.00"
-                    },
-                                                                                                    new TransactionViewModel()
-                    {
-                        DestinationAccount = "000000001",
-                        RecipientName = "John Doe",
-                        TransactionDate = DateTime.Now,
-                        TransactionId = 6,
-                        TransactionProtocol = "fdslak124sdfsadjl2134",
-                        Value = "$ 10.00"
-                    },
-                                                                                                                        new TransactionViewModel()
-                    {
-                        DestinationAccount = "000000001",
-                        RecipientName = "John Doe",
-                        TransactionDate = DateTime.Now,
-                        TransactionId = 7,
-                        TransactionProtocol = "fdslak124sdfsadjl2134",
-                        Value = "$ 10.00"
                     }
                 }
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpGet, Route("~/customer/transaction")]
+        public IActionResult Transaction()
+        {
+            TransactionViewModel viewModel = new TransactionViewModel()
+            {
+                LimitValue = "$ 100.0"
             };
 
             return View(viewModel);
