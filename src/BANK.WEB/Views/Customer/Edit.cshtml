@@ -1,0 +1,44 @@
+﻿@model EditViewModel
+
+@{
+    ViewData["Title"] = "Account Settings";
+}
+
+@section Styles{
+<link rel="stylesheet" href="~/css/customer/edit.css" asp-append-version="true" />
+}
+
+<div class="row">
+    <div class="col-12 text-center p-3">
+        <h3>Hello @Model.Name</h3><br />
+        <strong>Account number:</strong><br />
+        <span class="badge bg-secondary">@Model.AccountNumber</span>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+        <form asp-action="Register" asp-controller="Customer" method="post" enctype="application/x-www-form-urlencoded" class="col-6">
+            @Html.AntiForgeryToken()
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email address</label>
+                <input asp-for="Email" type="email" class="form-control col-12" aria-describedby="emailHelp" readonly="readonly">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Name</label>
+                <input asp-for="Name" required="" type="text" class="form-control col-12" readonly="readonly">
+            </div>
+            <div class="mb-3">
+                <label asp-for="OldPassword" class="form-label">Old Password</label>
+                <input asp-for="OldPassword" required="" type="password" class="form-control col-12" autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" required="" type="password" class="form-control col-12" autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <input asp-for="ConfirmPassword" required="" type="password" class="form-control col-12" autocomplete="off">
+            </div>
+            <button type="submit" class="btn btn-secondary col-12">Continue</button>
+        </form>
+    </div>
+</div>

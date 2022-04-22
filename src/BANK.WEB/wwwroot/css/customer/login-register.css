@@ -31,11 +31,17 @@
     }
 
 .register_image {
-    background: url("../img/background/register.jpg");
+    background: url("../../img/background/register.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
     height: 200px;
     filter: brightness(30%)
+}
+
+@media (max-width: 768px) {
+    .form .right_side {
+        justify-content: center;
+    }
 }

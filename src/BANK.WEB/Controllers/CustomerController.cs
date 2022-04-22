@@ -33,5 +33,16 @@ namespace BANK.WEB.Controllers
         {
             return View();
         }
+        
+        [HttpGet, Route("~/customer/me")]
+        public IActionResult Edit()
+        {
+            EditViewModel viewModel = new EditViewModel()
+            {
+
+            };
+
+            return View(viewModel);
+        }
     }
 }
