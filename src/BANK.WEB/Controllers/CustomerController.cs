@@ -5,8 +5,7 @@ namespace BANK.WEB.Controllers
 {
     public class CustomerController : Controller
     {
-        [HttpGet]
-        [Route("~/register")]
+        [HttpGet, Route("~/register")]
         public IActionResult Register([FromQuery(Name = "e")] string email)
         {
             RegisterViewModel viewModel = new RegisterViewModel()
@@ -17,11 +16,22 @@ namespace BANK.WEB.Controllers
             return View(viewModel);
         }
 
-        [HttpPost]
-        [Route("~/register")]
+        [HttpPost, Route("~/register")]
         public IActionResult Register([FromForm] RegisterViewModel viewModel)
         {
             return View(viewModel);
+        }
+
+        [HttpGet, Route("~/login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost, Route("~/login")]
+        public IActionResult Login([FromForm] LoginViewModel viewModel)
+        {
+            return View();
         }
     }
 }

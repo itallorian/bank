@@ -1,0 +1,38 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Create an account";
+}
+
+@section Styles{
+<link rel="stylesheet" href="~/css/customer.css" asp-append-version="true" />
+}
+
+<div class="row">
+    <div class="col-12 register_image"></div>
+    <div class="col-12 d-flex justify-content-between flex-column flex-md-row form">
+        <div class="col-0 col-md-4 d-none d-md-flex left_side">
+            <p class="left_side_title">It's good to see you here</p>
+            <p class="left_side_text">Complete the fields on the side to access your Account</p>
+        </div>
+        <div class="col-12 col-md-8 d-flex right_side">
+            <form asp-action="Login" asp-controller="Customer" method="post" enctype="application/x-www-form-urlencoded">
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email address</label>
+                    <input required="" type="email" class="form-control" asp-for="Email" autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input required="" asp-for="Password" type="password" class="form-control" autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-primary col-12">Continue</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+        <div class="d-flex justify-content-between">
+            <a class="p-4" asp-action="Register" asp-controller="Customer">I'm not a customer yet</a>
+        </div>
+    </div>
+</div>
