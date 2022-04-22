@@ -50,5 +50,84 @@ namespace BANK.WEB.Controllers
         {
             return View(viewModel);
         }
+
+
+        [HttpGet, Route("~/customer/balance")]
+        public IActionResult Balance()
+        {
+            BalanceViewModel viewModel = new BalanceViewModel()
+            {
+                AccountNumber = "0000000",
+                Balance = "$ 100.00",
+                Transactions = new List<TransactionViewModel>()
+                {
+                    new TransactionViewModel()
+                    {
+                        DestinationAccount = "000000001",
+                        RecipientName = "John Doe",
+                        TransactionDate = DateTime.Now,
+                        TransactionId = 1,
+                        TransactionProtocol = "fdslak124dfsadjl2134",
+                        Value = "$ 10.00"
+                    },
+                    new TransactionViewModel()
+                    {
+                        DestinationAccount = "000000001",
+                        RecipientName = "John Doe",
+                        TransactionDate = DateTime.Now,
+                        TransactionId = 2,
+                        TransactionProtocol = "fdslak124sdfsadjl2134",
+                        Value = "$ 10.00"
+                    },
+                                        new TransactionViewModel()
+                    {
+                        DestinationAccount = "000000001",
+                        RecipientName = "John Doe",
+                        TransactionDate = DateTime.Now,
+                        TransactionId = 3,
+                        TransactionProtocol = "fdslak124sdfsadjl2134",
+                        Value = "$ 10.00"
+                    },
+                                                            new TransactionViewModel()
+                    {
+                        DestinationAccount = "000000001",
+                        RecipientName = "John Doe",
+                        TransactionDate = DateTime.Now,
+                        TransactionId = 4,
+                        TransactionProtocol = "fdslak124sdfsadjl2134",
+                        Value = "$ 10.00"
+                    },
+                                                                                new TransactionViewModel()
+                    {
+                        DestinationAccount = "000000001",
+                        RecipientName = "John Doe",
+                        TransactionDate = DateTime.Now,
+                        TransactionId = 5,
+                        TransactionProtocol = "fdslak124sdfsadjl2134",
+                        Value = "$ 10.00"
+                    },
+                                                                                                    new TransactionViewModel()
+                    {
+                        DestinationAccount = "000000001",
+                        RecipientName = "John Doe",
+                        TransactionDate = DateTime.Now,
+                        TransactionId = 6,
+                        TransactionProtocol = "fdslak124sdfsadjl2134",
+                        Value = "$ 10.00"
+                    },
+                                                                                                                        new TransactionViewModel()
+                    {
+                        DestinationAccount = "000000001",
+                        RecipientName = "John Doe",
+                        TransactionDate = DateTime.Now,
+                        TransactionId = 7,
+                        TransactionProtocol = "fdslak124sdfsadjl2134",
+                        Value = "$ 10.00"
+                    }
+                }
+            };
+
+            return View(viewModel);
+        }
     }
 }
