@@ -16,10 +16,12 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Request your Bank account</h5>
-                    <form>
+                    <form asp-controller="Customer" asp-action="Register" method="get">
+                        @Html.AntiForgeryToken()
+
                         <div class="input-group">
                             <label for="email">Type your e-mail</label>
-                            <input id="email" name="email" class="form-control" type="email" placeholder="Type here" autocomplete="off" required />
+                            <input id="email" name="e" class="form-control" type="email" placeholder="Type here" autocomplete="off" required />
                         </div>
                         <button type="submit" class="btn">Continue</button>
                     </form>

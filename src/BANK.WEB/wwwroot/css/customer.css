@@ -1,0 +1,41 @@
+﻿/* register form */
+
+.form .left_side {
+    flex-direction: column;
+    padding: 30px;
+    color: #000;
+}
+
+    .form .left_side .left_side_title {
+        font-weight: bold;
+        font-size: 4em;
+    }
+
+    .form .left_side .left_side_text {
+        font-size: 1.5em;
+    }
+
+    .form .left_side img {
+        align-self: center;
+        width: 50%;
+        margin-top: 15px;
+    }
+
+.form .right_side {
+    padding: 20px;
+    justify-content: flex-end;
+}
+
+    .form .right_side form {
+        width: 70%;
+    }
+
+.register_image {
+    background: url("../img/background/register.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+    filter: brightness(30%)
+}
