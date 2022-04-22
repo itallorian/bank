@@ -33,7 +33,7 @@ namespace BANK.WEB.Controllers
         {
             return View();
         }
-        
+
         [HttpGet, Route("~/customer/me")]
         public IActionResult Edit()
         {
@@ -42,6 +42,12 @@ namespace BANK.WEB.Controllers
 
             };
 
+            return View(viewModel);
+        }
+
+        [HttpPost, Route("~/customer/me")]
+        public IActionResult Edit([FromForm] EditViewModel viewModel)
+        {
             return View(viewModel);
         }
     }
