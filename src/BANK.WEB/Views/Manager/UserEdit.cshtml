@@ -1,0 +1,39 @@
+﻿@model ManagerUserViewModel
+
+@{
+    ViewData["Title"] = "Edit user";
+}
+
+<div class="row">
+    <div class="col-12 d-flex justify-content-center mt-5 mb-5">
+        <div class="col-8">
+            <form asp-action="UserEdit" asp-controller="Manager" method="post" enctype="application/x-www-form-urlencoded">
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" asp-for="UserId" />
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Name</label>
+                    <input required="" asp-for="Name" type="text" class="form-control" autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label">User name</label>
+                    <input required="" asp-for="UserName" type="text" class="form-control" autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email address</label>
+                    <input required="" type="email" class="form-control" asp-for="Email" aria-describedby="emailHelp" autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input required="" asp-for="Password" type="password" class="form-control" autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Active" class="form-label">Active</label><br />
+                    <input asp-for="Active" type="checkbox">
+                </div>
+                <button type="submit" class="btn btn-secondary col-12">Continue</button>
+            </form>
+        </div>
+    </div>
+</div>

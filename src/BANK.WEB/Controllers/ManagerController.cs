@@ -16,5 +16,45 @@ namespace BANK.WEB.Controllers
         {
             return View(viewModel);
         }
+
+        [HttpGet, Route("~/management/user/list")]
+        public IActionResult UserList()
+        {
+            List<ManagerUserViewModel> viewModel = new List<ManagerUserViewModel>();
+            viewModel.Add(new ManagerUserViewModel()
+            {
+                UserId = 1,
+                UserName = "UserName",
+                Active = true,
+                Email = "Email",
+                Name = "Name"
+            });
+
+            return View(viewModel);
+        }
+
+        [HttpGet, Route("~/management/user/new")]
+        public IActionResult UserCreate()
+        {
+            return View();
+        }
+
+        [HttpPost, Route("~/management/user/new")]
+        public IActionResult UserCreate([FromForm] ManagerUserViewModel viewModel)
+        {
+            return View(viewModel);
+        }
+
+        [HttpGet, Route("~/management/user/edit/{id}")]
+        public IActionResult UserEdit([FromRoute(Name = "id")] string userId)
+        {
+            return View();
+        }
+
+        [HttpPost, Route("~/management/user/edit/{id}")]
+        public IActionResult UserEdit([FromForm] ManagerUserViewModel viewModel)
+        {
+            return View(viewModel);
+        }
     }
 }
