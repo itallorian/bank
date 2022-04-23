@@ -1,0 +1,22 @@
+﻿@model UserLoginViewModel
+
+@{
+    ViewData["Title"] = "Login account";
+}
+
+<div class="row">
+    <div class="col-12 d-flex justify-content-center mt-5 mb-5">
+        <form class="col-6" asp-action="Login" asp-controller="User" method="post" enctype="application/x-www-form-urlencoded">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label">User name</label>
+                <input required="" type="text" class="form-control" asp-for="UserName" autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input required="" asp-for="Password" type="password" class="form-control" autocomplete="off">
+            </div>
+            <button type="submit" class="btn btn-secondary col-12">Continue</button>
+        </form>
+    </div>
+</div>
