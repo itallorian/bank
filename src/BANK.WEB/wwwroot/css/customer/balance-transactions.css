@@ -1,0 +1,17 @@
+﻿.balace-card {
+    margin-right: 10px;
+}
+
+.accordion-button:not(.collapsed) {
+    color: initial !important;
+    background-color: initial !important;
+    box-shadow: initial !important;
+}
+
+
+
+@media (max-width: 768px) {
+    .balace-card {
+        margin-right: 0;
+    }
+}

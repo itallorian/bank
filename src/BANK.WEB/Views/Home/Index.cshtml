@@ -1,8 +1,60 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "You in control";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="hero row">
+    <div class="col-12 d-flex justify-content-around flex-column flex-md-row">
+        <div class="col-12 col-md-6 p-2">
+            <h1>
+                All progress happens outside your comfort zone.
+            </h1>
+            <p>
+                Choose the future. Start taking better control of your financial life with Bank.
+            </p>
+        </div>
+        <div class="col-12 col-md-6 d-flex justify-content-end p-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Request your Bank account</h5>
+                    <form asp-controller="Customer" asp-action="Register" method="get">
+                        @Html.AntiForgeryToken()
+
+                        <div class="input-group">
+                            <label for="email">Type your e-mail</label>
+                            <input id="email" name="e" class="form-control" type="email" placeholder="Type here" autocomplete="off" required />
+                        </div>
+                        <button type="submit" class="btn">Continue</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <section class="articles">
+        <article class="row">
+            <div class="col-12 d-flex justify-content-around flex-column-reverse flex-md-row">
+                <div class="col-12 col-md-6 p-2 article_text">
+                    <p class="article_text_title">Account without fees</p>
+                    <p class="article_text_phrase">At Bank you have a completely free account to make your dreams come true.</p>
+                </div>
+                <div class="col-12 col-md-6 p-2 article_image">
+                    <img src="~/img/article/modern_professional.svg" />
+                </div>
+            </div>
+        </article>
+
+        <article class="row">
+            <div class="col-12 d-flex justify-content-around flex-column flex-md-row">
+                <div class="col-12 col-md-6 p-2 article_image">
+                    <img src="~/img/article/finance_re.svg" />
+                </div>
+                <div class="col-12 col-md-6 p-2 article_text">
+                    <p class="article_text_title">You in control</p>
+                    <p class="article_text_phrase">Make transactions and manage your money with our dashboard.</p>
+                </div>
+            </div>
+        </article>
+    </section>
 </div>

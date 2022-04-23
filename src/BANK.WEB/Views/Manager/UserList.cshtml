@@ -1,0 +1,43 @@
+﻿@model List<ManagerUserViewModel>
+
+@{
+    ViewData["Title"] = "User list";
+}
+
+<div class="row">
+    <div class="col-12 mt-5 d-flex justify-content-center">
+        <a asp-action="UserCreate" asp-controller="Manager" class="btn btn-secondary">Create New User</a>
+    </div>
+    <div class="col-12 d-flex justify-content-center mt-5 mb-5">
+        <div class="col-8">
+            <table class="table table-striped">
+                <thead class="text-center">
+                    <tr>
+                        <th>User ID</th>
+                        <th>Active</th>
+                        <th>Name</th>
+                        <th>UserName</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    @if (Model != null && Model?.Count > 0)
+                    {
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.UserId</td>
+                                <td>@user.ActiveText</td>
+                                <td>@user.Name</td>
+                                <td>@user.UserName</td>
+                                <td>@user.Email</td>
+                                <td><a asp-action="UserEdit" asp-controller="Manager" asp-route-id="@user.UserId" class="btn btn-secondary">Edit</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

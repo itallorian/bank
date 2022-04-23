@@ -1,0 +1,49 @@
+﻿@model BalanceViewModel
+
+@{
+    ViewData["Title"] = "Balance and Transactions";
+}
+
+@section Styles{
+<link rel="stylesheet" href="~/css/customer/balance-transactions.css" asp-append-version="true" />
+}
+
+<div class="row">
+    <div class="col-12 p-5 d-flex justify-content-around flex-column flex-md-row">
+        <div class="col-12 col-md-4 balace-card mb-3">
+            <div class="card col-12">
+                <div class="card-body">
+                    <h5 class="card-title">Balance</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">This is your current balance</h6>
+                    <h2 class="card-text">@Model.Balance</h2>
+                    <a asp-action="Transaction" asp-controller="Customer">Make a transaction</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            @if (Model.Transactions != null && Model.Transactions.Count > 0)
+            {
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    @foreach (var transaction in Model.Transactions)
+                    {
+                        string show = Model.Transactions.IndexOf(transaction) == 0 ? "show" : string.Empty;
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="accordion-item-@transaction.TransactionId">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panel-accordion-item-@transaction.TransactionId" aria-expanded="true" aria-controls="accordion-item-@transaction.TransactionId">
+                                    @transaction.RecipientName (@transaction.DestinationAccount) - @transaction.Value
+                                </button>
+                            </h2>
+                            <div id="panel-accordion-item-@transaction.TransactionId" class="accordion-collapse collapse @show" aria-labelledby="panel-accordion-item-@transaction.TransactionId">
+                                <div class="accordion-body">
+                                    Transaction protocol: <strong>@transaction.TransactionProtocol</strong><br />
+                                    The transaction was carried out in:<strong> @transaction.TransactionDate </strong>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
