@@ -68,17 +68,9 @@ namespace BANK.WEB.Controllers
         }
 
         [HttpGet, Route("~/management/user/list")]
-        public IActionResult UserList()
+        public async Task<IActionResult> UserList()
         {
-            List<ManagerUserViewModel> viewModel = new List<ManagerUserViewModel>();
-            viewModel.Add(new ManagerUserViewModel()
-            {
-                UserId = 1,
-                UserName = "UserName",
-                Active = true,
-                Email = "Email",
-                Name = "Name"
-            });
+            List<ManagerUserViewModel> viewModel = await _managerService.GetUsers();
 
             return View(viewModel);
         }
@@ -86,12 +78,19 @@ namespace BANK.WEB.Controllers
         [HttpGet, Route("~/management/user/new")]
         public IActionResult UserCreate()
         {
-            return View();
+            return View(new ManagerUserViewModel());
         }
 
         [HttpPost, Route("~/management/user/new")]
-        public IActionResult UserCreate([FromForm] ManagerUserViewModel viewModel)
+        public async Task<IActionResult> UserCreate([FromForm] ManagerUserViewModel viewModel)
         {
+            await _managerService.CreateUser(viewModel);
+
+            if (viewModel.Success == true)
+            {
+                return RedirectToAction(nameof(UserList));
+            }
+
             return View(viewModel);
         }
 
