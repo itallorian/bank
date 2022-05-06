@@ -19,14 +19,12 @@ namespace BANK.WEB.Controllers
 
         [AllowAnonymous]
         [HttpGet, Route("~/management")]
-        public IActionResult Login([FromQuery(Name = "ReturnUrl")] string returnUrl)
+        public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated && User.Identity.AuthenticationType.Equals("Manager"))
             {
                 return RedirectToAction(nameof(UserList));
             }
-
-            TempData["ReturnUrl"] = returnUrl;
 
             return View(new ManagerLoginViewModel());
         }
@@ -55,14 +53,6 @@ namespace BANK.WEB.Controllers
             var authProperties = new AuthenticationProperties();
 
             await HttpContext.SignInAsync("Manager", new ClaimsPrincipal(claimsIdentity), authProperties);
-
-            if (TempData["ReturnUrl"] != null && string.IsNullOrEmpty(TempData["ReturnUrl"].ToString()) == false)
-            {
-                string url = TempData["ReturnUrl"].ToString();
-                TempData["ReturnUrl"] = null;
-
-                return Redirect(url);
-            }
 
             return RedirectToAction(nameof(UserList));
         }

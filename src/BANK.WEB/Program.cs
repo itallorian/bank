@@ -21,6 +21,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 #region [ SET SERVICES ]
 
 builder.Services.AddScoped<IManagerService, ManagerService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 #endregion [ SET SERVICES ]
 
@@ -33,6 +34,15 @@ builder.Services.AddAuthentication("Manager")
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/management";
         options.LoginPath = "/management";
+    });
+
+builder.Services.AddAuthentication("User")
+    .AddCookie("User", options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/user";
+        options.LoginPath = "/user";
     });
 
 #endregion [ AUTHENTICATION ]

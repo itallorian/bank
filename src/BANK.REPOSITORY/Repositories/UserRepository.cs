@@ -104,6 +104,22 @@ namespace BANK.REPOSITORY.Repositories
             }
         }
 
+        public User GetUser(string userName, string password)
+        {
+            try
+            {
+                return (from user in _users
+                        where
+                            (user.UserName.Equals(userName) && user.Password.Equals(password))
+
+                        select user).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public decimal EditUser(User user)
         {
             try

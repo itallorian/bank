@@ -13,5 +13,7 @@ namespace BANK.REPOSITORY.Repositories.Interfaces
         User GetUser(decimal id);
 
         decimal EditUser(User user);
+
+        User GetUser(string userName, string password);
     }
 }
