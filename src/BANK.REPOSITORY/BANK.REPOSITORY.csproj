@@ -10,4 +10,10 @@
     <ProjectReference Include="..\BANK.BUSINESSLOGIC\BANK.BUSINESSLOGIC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Customer\" />
+    <Folder Include="Data\Manager\" />
+    <Folder Include="Data\User\" />
+  </ItemGroup>
+
 </Project>
