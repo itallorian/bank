@@ -1,20 +1,70 @@
-﻿using BANK.WEB.ViewModels.Manager;
+﻿using BANK.WEB.Services.Interfaces;
+using BANK.WEB.ViewModels.Manager;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BANK.WEB.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Manager")]
     public class ManagerController : Controller
     {
-        [HttpGet, Route("~/management")]
-        public IActionResult Login()
+        private readonly IManagerService _managerService;
+
+        public ManagerController(IManagerService managerService)
         {
-            return View();
+            _managerService = managerService;
         }
 
-        [HttpPost, Route("~/management")]
-        public IActionResult Login([FromForm] ManagerLoginViewModel viewModel)
+        [AllowAnonymous]
+        [HttpGet, Route("~/management")]
+        public IActionResult Login([FromQuery(Name = "ReturnUrl")] string returnUrl)
         {
-            return View(viewModel);
+            if (User.Identity.IsAuthenticated && User.Identity.AuthenticationType.Equals("Manager"))
+            {
+                return RedirectToAction(nameof(UserList));
+            }
+
+            TempData["ReturnUrl"] = returnUrl;
+
+            return View(new ManagerLoginViewModel());
+        }
+
+        [AllowAnonymous]
+        [HttpPost, Route("~/management")]
+        public async Task<IActionResult> Login([FromForm] ManagerLoginViewModel viewModel)
+        {
+            await _managerService.Access(viewModel);
+
+            if (viewModel.HasAccess == false)
+            {
+                viewModel.Message = "Incorrect username or password";
+
+                return View(viewModel);
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, viewModel.UserName),
+                new Claim(ClaimTypes.Role, "Manager"),
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, "Manager");
+
+            var authProperties = new AuthenticationProperties();
+
+            await HttpContext.SignInAsync("Manager", new ClaimsPrincipal(claimsIdentity), authProperties);
+
+            if (TempData["ReturnUrl"] != null && string.IsNullOrEmpty(TempData["ReturnUrl"].ToString()) == false)
+            {
+                string url = TempData["ReturnUrl"].ToString();
+                TempData["ReturnUrl"] = null;
+
+                return Redirect(url);
+            }
+
+            return RedirectToAction(nameof(UserList));
         }
 
         [HttpGet, Route("~/management/user/list")]
@@ -55,6 +105,14 @@ namespace BANK.WEB.Controllers
         public IActionResult UserEdit([FromForm] ManagerUserViewModel viewModel)
         {
             return View(viewModel);
+        }
+
+        [HttpGet, Route("management/logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync("Manager");
+
+            return RedirectToAction(nameof(Login));
         }
     }
 }

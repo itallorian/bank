@@ -1,5 +1,8 @@
 using BANK.REPOSITORY.Repositories;
 using BANK.REPOSITORY.Repositories.Interfaces;
+using BANK.WEB.Services;
+using BANK.WEB.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,25 @@ builder.Services.AddScoped<IManagerRepository, ManagerRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 #endregion [ SET REPOSITORIES ]
+
+#region [ SET SERVICES ]
+
+builder.Services.AddScoped<IManagerService, ManagerService>();
+
+#endregion [ SET SERVICES ]
+
+#region [ AUTHENTICATION ]
+
+builder.Services.AddAuthentication("Manager")
+    .AddCookie("Manager", options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.SlidingExpiration = true;
+        options.AccessDeniedPath = "/management";
+        options.LoginPath = "/management";
+    });
+
+#endregion [ AUTHENTICATION ]
 
 var app = builder.Build();
 
@@ -31,6 +53,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",

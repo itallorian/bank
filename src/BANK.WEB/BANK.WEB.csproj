@@ -7,8 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Data\Manager\AdministratorsData.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BANK.BUSINESSLOGIC\BANK.BUSINESSLOGIC.csproj" />
     <ProjectReference Include="..\BANK.REPOSITORY\BANK.REPOSITORY.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Customer\" />
+    <Folder Include="Data\User\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Data\Manager\AdministratorsData.json" />
   </ItemGroup>
 
 </Project>
