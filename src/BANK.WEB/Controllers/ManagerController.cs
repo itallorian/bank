@@ -95,14 +95,28 @@ namespace BANK.WEB.Controllers
         }
 
         [HttpGet, Route("~/management/user/edit/{id}")]
-        public IActionResult UserEdit([FromRoute(Name = "id")] string userId)
+        public async Task<IActionResult> UserEdit([FromRoute(Name = "id")] string userId)
         {
-            return View();
+            ManagerUserViewModel viewModel = await _managerService.GetUser(Convert.ToDecimal(userId));
+
+            if (viewModel.Success == false)
+            {
+                return RedirectToAction(nameof(UserList));
+            }
+
+            return View(viewModel);
         }
 
         [HttpPost, Route("~/management/user/edit/{id}")]
-        public IActionResult UserEdit([FromForm] ManagerUserViewModel viewModel)
+        public async Task<IActionResult> UserEdit([FromForm] ManagerUserViewModel viewModel)
         {
+            await _managerService.EditUser(viewModel);
+
+            if (viewModel.Success == true)
+            {
+                return RedirectToAction(nameof(UserList));
+            }
+
             return View(viewModel);
         }
 

@@ -9,5 +9,9 @@ namespace BANK.WEB.Services.Interfaces
         Task<List<ManagerUserViewModel>> GetUsers();
 
         Task CreateUser(ManagerUserViewModel viewModel);
+
+        Task<ManagerUserViewModel> GetUser(decimal id);
+
+        Task EditUser(ManagerUserViewModel viewModel);
     }
 }

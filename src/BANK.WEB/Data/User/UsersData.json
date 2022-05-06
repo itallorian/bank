@@ -1,1 +1,1 @@
-[{"Id":1.0,"Active":true,"Name":"Itallo Rian","UserName":"itallo.rian","Password":"123456","Email":"itallo@bank.com","Customers":null},{"Id":2.0,"Active":true,"Name":"John Fin","UserName":"john.fin","Password":"Teste@123","Email":"john@bank.com","Customers":null}]
+[{"Id":1.0,"Active":false,"Name":"Itallo Rian","UserName":"itallo.rian","Password":"123456","Email":"test@bank.com","Customers":null},{"Id":2.0,"Active":true,"Name":"John Fin","UserName":"john.fin","Password":"Teste@123","Email":"john@bank.com","Customers":null}]

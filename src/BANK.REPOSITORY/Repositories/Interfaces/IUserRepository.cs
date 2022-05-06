@@ -6,8 +6,12 @@ namespace BANK.REPOSITORY.Repositories.Interfaces
     {
         List<User> GetUsers();
 
-        bool CheckUserExistence(string userName, string email);
+        bool CheckUserExistence(string userName, string email, decimal? id = null);
 
         decimal AddUser(User user);
+
+        User GetUser(decimal id);
+
+        decimal EditUser(User user);
     }
 }

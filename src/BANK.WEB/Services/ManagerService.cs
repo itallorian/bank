@@ -84,6 +84,66 @@ namespace BANK.WEB.Services
             }
 
             viewModel.Message = "Error adding user, please try again.";
+
+            await Task.CompletedTask;
+        }
+
+        public async Task<ManagerUserViewModel> GetUser(decimal id)
+        {
+            ManagerUserViewModel viewModel = new ManagerUserViewModel();
+
+            User user = _userRepository.GetUser(id);
+
+            if (user != null)
+            {
+                viewModel.Success = true;
+                viewModel.UserId = user.Id;
+                viewModel.Active = user.Active;
+                viewModel.UserName = user.UserName;
+                viewModel.Name = user.Name;
+                viewModel.Email = user.Email;
+            }
+
+            await Task.CompletedTask;
+
+            return viewModel;
+        }
+
+        public async Task EditUser(ManagerUserViewModel viewModel)
+        {
+            #region [ Validate Entry ]
+
+            bool userExists = _userRepository.CheckUserExistence(viewModel.UserName, viewModel.Email, viewModel.UserId);
+
+            if (userExists == true)
+            {
+                viewModel.Message = "User already exist.";
+                return;
+            }
+
+            #endregion [ Validate Entry ]
+
+            User user = new User()
+            {
+                Id = viewModel.UserId,
+                Active = viewModel.Active,
+                Name = viewModel.Name,
+                UserName = viewModel.UserName,
+                Email = viewModel.Email,
+                Password = viewModel.Password
+            };
+
+            decimal id = _userRepository.EditUser(user);
+
+            if (id > 0)
+            {
+                viewModel.Success = true;
+                return;
+            }
+
+            viewModel.Message = "Error updating user, please try again.";
+
+            await Task.CompletedTask;
         }
     }
 }
