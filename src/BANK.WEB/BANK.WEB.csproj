@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BANK.BUSINESSLOGIC\BANK.BUSINESSLOGIC.csproj" />
+    <ProjectReference Include="..\BANK.REPOSITORY\BANK.REPOSITORY.csproj" />
   </ItemGroup>
 
 </Project>
