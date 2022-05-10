@@ -44,8 +44,9 @@ namespace BANK.WEB.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, viewModel.UserName),
-                new Claim(ClaimTypes.Role, "User"),
+                new Claim(ClaimTypes.Name, viewModel.UserId.ToString()),
+                new Claim(ClaimTypes.Sid, viewModel.UserName),
+                new Claim(ClaimTypes.Role, "User")
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, "User");
@@ -58,33 +59,19 @@ namespace BANK.WEB.Controllers
         }
 
         [HttpGet, Route("~/user/customer/approval")]
-        public IActionResult CustomerApproval()
+        public async Task<IActionResult> CustomerApproval()
         {
-            List<UserCustomerApprovalViewModel> viewModel = new List<UserCustomerApprovalViewModel>();
-
-            viewModel.Add(new UserCustomerApprovalViewModel()
-            {
-                Name = "teste",
-                Email = "teste",
-                DateRegister = DateTime.Now
-            });
+            var viewModel = await _userService.UsersCustomerApproval(Convert.ToDecimal(User.Identity.Name));
 
             return View(viewModel);
         }
 
         [HttpGet, Route("~/user/customer/approval/{id}")]
-        public IActionResult CustomerApproval([FromRoute(Name = "id")] string customerId)
+        public async Task<IActionResult> CustomerApproval([FromRoute(Name = "id")] string customerId)
         {
-            List<UserCustomerApprovalViewModel> viewModel = new List<UserCustomerApprovalViewModel>();
+            await _userService.ApproveUser(Convert.ToDecimal(customerId), Convert.ToDecimal(User.Identity.Name));
 
-            viewModel.Add(new UserCustomerApprovalViewModel()
-            {
-                Name = "teste",
-                Email = "teste",
-                DateRegister = DateTime.Now
-            });
-
-            return View(viewModel);
+            return Redirect("/user/customer/approval");
         }
     }
 }

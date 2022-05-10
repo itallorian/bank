@@ -8,6 +8,8 @@
 
         public bool HasAccess { get; set; }
 
+        public decimal? UserId { get; set; }
+
         public string? Message { get; set; }
     }
 }

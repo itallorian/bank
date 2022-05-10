@@ -23,10 +23,39 @@ namespace BANK.WEB.Services
             if (user != null)
             {
                 viewModel.HasAccess = true;
+                viewModel.UserId = user.Id;
             }
 
             await Task.CompletedTask;
         }
 
+        public async Task<List<UserCustomerApprovalViewModel>> UsersCustomerApproval(decimal userId)
+        {
+            var viewModel = new List<UserCustomerApprovalViewModel>();
+
+            var customersToApprove = _customerRepository.GetCustomersToApprove();
+
+            foreach (var customer in customersToApprove)
+            {
+                viewModel.Add(new UserCustomerApprovalViewModel()
+                {
+                    CustomerId = customer.Id,
+                    Name = customer.Name,
+                    Email = customer.Email,
+                    DateRegister = customer.InsertionDate
+                });
+            }
+
+            await Task.CompletedTask;
+
+            return viewModel;
+        }
+
+        public async Task ApproveUser(decimal customerId, decimal userId)
+        {
+            _customerRepository.ApproveUser(customerId, userId);
+
+            await Task.CompletedTask;
+        }
     }
 }

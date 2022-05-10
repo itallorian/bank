@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Customer\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Data\Manager\AdministratorsData.json" />
   </ItemGroup>
 
