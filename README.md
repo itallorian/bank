@@ -4,13 +4,10 @@
 
 Account and banking services integration system for users.
 
-
 ## Functionalities
 
 - Account management
 - Relationship between accounts
-- Expense report
-
 
 ## Authors
 
