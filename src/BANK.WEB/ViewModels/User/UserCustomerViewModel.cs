@@ -1,6 +1,6 @@
 ﻿namespace BANK.WEB.ViewModels.User
 {
-    public class UserCustomerApprovalViewModel
+    public class UserCustomerViewModel
     {
         public decimal CustomerId { get; set; }
 

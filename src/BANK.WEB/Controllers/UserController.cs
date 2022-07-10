@@ -61,7 +61,7 @@ namespace BANK.WEB.Controllers
         [HttpGet, Route("~/user/customer/approval")]
         public async Task<IActionResult> CustomerApproval()
         {
-            var viewModel = await _userService.UsersCustomerApproval(Convert.ToDecimal(User.Identity.Name));
+            var viewModel = await _userService.UsersCustomerApproval();
 
             return View(viewModel);
         }
@@ -72,6 +72,22 @@ namespace BANK.WEB.Controllers
             await _userService.ApproveUser(Convert.ToDecimal(customerId), Convert.ToDecimal(User.Identity.Name));
 
             return Redirect("/user/customer/approval");
+        }
+
+        [HttpGet, Route("~/user/customer/list")]
+        public async Task<IActionResult> CustomerList()
+        {
+            var viewModel = await _userService.UserCustomers(Convert.ToDecimal(User.Identity.Name));
+
+            return View(viewModel);
+        }
+
+        [HttpGet, Route("~/user/logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync("User");
+
+            return RedirectToAction(nameof(Login));
         }
     }
 }

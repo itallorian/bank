@@ -29,15 +29,15 @@ namespace BANK.WEB.Services
             await Task.CompletedTask;
         }
 
-        public async Task<List<UserCustomerApprovalViewModel>> UsersCustomerApproval(decimal userId)
+        public async Task<List<UserCustomerViewModel>> UsersCustomerApproval()
         {
-            var viewModel = new List<UserCustomerApprovalViewModel>();
+            var viewModel = new List<UserCustomerViewModel>();
 
             var customersToApprove = _customerRepository.GetCustomersToApprove();
 
             foreach (var customer in customersToApprove)
             {
-                viewModel.Add(new UserCustomerApprovalViewModel()
+                viewModel.Add(new UserCustomerViewModel()
                 {
                     CustomerId = customer.Id,
                     Name = customer.Name,
@@ -49,6 +49,29 @@ namespace BANK.WEB.Services
             await Task.CompletedTask;
 
             return viewModel;
+        }
+
+        public async Task<List<UserCustomerViewModel>> UserCustomers(decimal userId)
+        {
+            var viewModel = new List<UserCustomerViewModel>();
+
+            var customers = _customerRepository.GetUserCustomers(userId);
+
+            foreach (var customer in customers)
+            {
+                viewModel.Add(new UserCustomerViewModel()
+                {
+                    CustomerId = customer.Id,
+                    Name = customer.Name,
+                    Email = customer.Email,
+                    DateRegister = customer.InsertionDate
+                });
+            }
+
+            await Task.CompletedTask;
+
+            return viewModel;
+
         }
 
         public async Task ApproveUser(decimal customerId, decimal userId)

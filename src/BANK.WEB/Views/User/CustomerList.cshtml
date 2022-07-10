@@ -1,7 +1,7 @@
 ﻿@model List<UserCustomerViewModel>
 
 @{
-    ViewData["Title"] = "Customer approval";
+    ViewData["Title"] = "Customer List";
 }
 
 <div class="row">
@@ -14,7 +14,6 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Date register</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -27,9 +26,6 @@
                                 <td>@customer.Name</td>
                                 <td>@customer.Email</td>
                                 <td>@customer.DateRegister</td>
-                                <td>
-                                    <a asp-action="CustomerApproval" asp-controller="User" asp-route-id="@customer.CustomerId" class="btn btn-secondary">Approve Account</a>
-                                </td>
                             </tr>
                         }
                     }

@@ -6,7 +6,9 @@ namespace BANK.WEB.Services.Interfaces
     {
         Task Access(UserLoginViewModel viewModel);
 
-        Task<List<UserCustomerApprovalViewModel>> UsersCustomerApproval(decimal userId);
+        Task<List<UserCustomerViewModel>> UsersCustomerApproval();
+
+        Task<List<UserCustomerViewModel>> UserCustomers(decimal userId);
 
         Task ApproveUser(decimal customerId, decimal userId);
     }

@@ -1,17 +1,1 @@
-[
-  {
-    "Id": 1.0,
-    "Name": "Itallo",
-    "Email": "itallo@bank.com",
-    "Password": "123456",
-    "InsertionDate": "2022-05-10T23:38:44",
-    "Okay": true,
-    "UserApproval": 1.0,
-    "Account": {
-      "AccountNumber": "000001",
-      "Balance": "100000",
-      "Transactions": [
-      ]
-    }
-  }
-]
+[{"Id":1.0,"Name":"Itallo","Email":"itallo@bank.com","Password":"123456","InsertionDate":"2022-05-10T23:38:44","Okay":true,"UserApproval":1.0,"Account":{"AccountNumber":"000001","Balance":"100000","Transactions":[]}}]
